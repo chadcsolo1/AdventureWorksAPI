@@ -1,0 +1,67 @@
+﻿name: AdventureWorksAPI
+#Defining how the Pipeline will be triggered - When a push is made to the main branch or when manually triggered
+on:
+    workflow_dispatch:
+    push:
+        branches:
+            - main
+
+#Defining environment variables to be used in the pipeline
+env:
+    AZURE_WEBAPP_NAME: "adventureworksapi" # Set this to your application's name
+    AZURE_WEAPP_PACKAGE_PATH: '.' # Set this to the path of your web app project, defaults to the repository root
+    DOTNET_VERSION: '9.x' # Set this to the .NET version to use
+    SOLUTION: 'AdventureWorksAPI.sln' # Set this to your solution file
+    API_PROJECT_PATH: 'src/AdventureWorksAPI/AdventureWorksAPI.csproj' # Set this to the path of your API project file
+    PUBLISH_DIR: '$(System.DefaultWorkingDirectory)/src/AdventureWorksAPI/bin/Release/net9.0/publish' # Set this to the path of your publish directory
+
+#Defining the jobs to be run in the pipeline
+jobs:
+    build-and-test:
+        name: Build and Test
+        runs-on: windows-latest
+
+        steps:
+            - uses: actions/checkout@v4
+  
+            - name: Setup .NET Core
+              uses: actions/setup-dotnet@v4
+              with:
+                  dotnet-version: ${{ env.DOTNET_VERSION }}
+            
+            - name: Restore
+              run: dotnet restore ${{ env.SOLUTION }}
+
+            - name: Build
+              run: dotnet build ${{ env.SOLUTION }} --configuration Release --no-restore
+
+            - name: Test
+              run: dotnet test ${{ env.SOLUTION }} --configuration Release --no-restore --no-build --verbosity normal
+
+            - name: Publish
+              run: dotnet publish ${{ env.API_PROJECT_PATH }} --configuration Release --no-restore --no-build --property:PublishDir=${{ env.PUBLISH_DIR }}
+            # Upload artifact for deployment job
+            - name: Publish Artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: webapp
+                  path: ${{ env.AZURE_WEAPP_PACKAGE_PATH }}
+
+    deploy: 
+        name: Deploy to Azure
+        runs-on: windows-latest
+        needs: [build-and-test]
+
+        steps:
+            - name: Download artifact from build job
+              uses: actions/download-artifact@v4
+              with:
+                  name: webapp
+                  path: ${{ env.AZURE_WEAPP_PACKAGE_PATH }}
+
+            - name: Deploy
+              uses: azure/webapps-deploy@v2
+              with:
+                app-name: ${{ env.AZURE_WEBAPP_NAME }}
+                publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+                package: ${{ env.AZURE_WEAPP_PACKAGE_PATH }}
