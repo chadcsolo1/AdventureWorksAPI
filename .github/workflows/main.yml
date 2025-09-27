@@ -12,7 +12,7 @@ env:
     AZURE_WEAPP_PACKAGE_PATH: '.' # Set this to the path of your web app project, defaults to the repository root
     DOTNET_VERSION: '9.x' # Set this to the .NET version to use
     SOLUTION: 'AdventureWorksAPI.sln' # Set this to your solution file
-    API_PROJECT_PATH: 'src/AdventureWorksAPI/AdventureWorksAPI/AdventureWorksAPI.csproj' # Set this to the path of your API project file
+    API_PROJECT_PATH: 'src/AdventureWorksAPI/AdventureWorksAPI/AdventureWorksAPI.sln' # Set this to the path of your API project file
     PUBLISH_DIR: './publish' # Set this to the path of your publish directory
 
 #Defining the jobs to be run in the pipeline
