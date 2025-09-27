@@ -19,6 +19,7 @@ namespace AdventureWorksAPI.Controllers
         public ActionResult<List<SalesOrderDetail>> GetAllSalesOrderDetails()
         {
             //Need to add services to call in the controller
+            //Testing CICD Pipeline and need a commit and push
             var salesOrderDetails = _salesRepo.GetAllSalesOrderDetails();
             if (salesOrderDetails == null || !salesOrderDetails.Any())
             {
