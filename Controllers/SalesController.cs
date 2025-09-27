@@ -18,6 +18,7 @@ namespace AdventureWorksAPI.Controllers
         [HttpGet("GetAllSalesOrderDetails")]
         public ActionResult<List<SalesOrderDetail>> GetAllSalesOrderDetails()
         {
+            //Need to add services to call in the controller
             var salesOrderDetails = _salesRepo.GetAllSalesOrderDetails();
             if (salesOrderDetails == null || !salesOrderDetails.Any())
             {
