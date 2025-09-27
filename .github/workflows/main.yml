@@ -13,7 +13,7 @@ env:
     DOTNET_VERSION: '9.x' # Set this to the .NET version to use
     SOLUTION: 'AdventureWorksAPI.sln' # Set this to your solution file
     API_PROJECT_PATH: 'src/AdventureWorksAPI/AdventureWorksAPI.csproj' # Set this to the path of your API project file
-    PUBLISH_DIR: '$(System.DefaultWorkingDirectory)/src/AdventureWorksAPI/bin/Release/net9.0/publish' # Set this to the path of your publish directory
+    PUBLISH_DIR: './publish' # Set this to the path of your publish directory
 
 #Defining the jobs to be run in the pipeline
 jobs:
