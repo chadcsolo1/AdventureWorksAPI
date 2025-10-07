@@ -1,6 +1,7 @@
 using AdventureWorksAPI.Models;
 using AdventureWorksAPI.Repositories.ProductRepository;
 using AdventureWorksAPI.Repositories.SalesRepository;
+using AdventureWorksAPI.Repositories.TaskRepository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,7 @@ builder.Services.AddDbContext<AdventureWorks2017Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<ISalesRepository, SalesRepository>();
 builder.Services.AddScoped<IProductRepo, ProductRepo>();
+builder.Services.AddScoped<IWorkItemRepository, WorkItemRepository>();
 //builder.Services.AddCors(options => options.AddPolicy(name: "AllDashboardPro",
 //    policy =>
 //    {

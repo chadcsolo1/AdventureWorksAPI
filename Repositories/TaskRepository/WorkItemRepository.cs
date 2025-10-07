@@ -1,4 +1,5 @@
 ﻿using AdventureWorksAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AdventureWorksAPI.Repositories.TaskRepository
 {
@@ -19,9 +20,9 @@ namespace AdventureWorksAPI.Repositories.TaskRepository
             throw new NotImplementedException();
         }
 
-        public Task<WorkItem> GetAllTask()
+        public async Task<List<WorkItem>> GetAllTask()
         {
-            throw new NotImplementedException();
+            return await _context.WorkItems.ToListAsync();
         }
 
         public Task<WorkItem> GetWorkItemById(int id)
