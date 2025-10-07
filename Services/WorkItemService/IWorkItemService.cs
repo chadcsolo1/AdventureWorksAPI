@@ -6,8 +6,8 @@ namespace AdventureWorksAPI.Services.WorkItemService
     {
         Task<List<WorkItem>> GetAllWorkItems();
         Task<WorkItem> GetWorkItemById(int id);
-        Task<List<WorkItem>> AddWorkItem(WorkItem newWorkItem);
+        Task<WorkItem> AddWorkItem(WorkItem newWorkItem);
         Task<WorkItem> UpdateWorkItem(WorkItem updatedWorkItem);
-        Task<List<WorkItem>> DeleteWorkItem(int id);
+        Task<bool> DeleteWorkItem(int id);
     }
 }

@@ -10,14 +10,14 @@ namespace AdventureWorksAPI.Services.WorkItemService
         {
             _workItemRepo = workItemRepo;
         }
-        public Task<List<WorkItem>> AddWorkItem(WorkItem newWorkItem)
+        public async Task<WorkItem> AddWorkItem(WorkItem newWorkItem)
         {
-            throw new NotImplementedException();
+            return await _workItemRepo.CreateTask(newWorkItem);
         }
 
-        public Task<List<WorkItem>> DeleteWorkItem(int id)
+        public async Task<bool> DeleteWorkItem(int id)
         {
-            throw new NotImplementedException();
+            return await _workItemRepo.DeleteTask(id);
         }
 
         public Task<List<WorkItem>> GetAllWorkItems()
