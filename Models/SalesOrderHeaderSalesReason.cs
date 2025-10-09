@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AdventureWorksAPI.Models;
+namespace AdventureWorksAPI;
 
 /// <summary>
 /// Cross-reference table mapping sales orders to sales reason codes.

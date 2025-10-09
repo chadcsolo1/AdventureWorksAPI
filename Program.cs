@@ -16,6 +16,11 @@ builder.Services.AddDbContext<AdventureWorks2017Context>(options =>
 builder.Services.AddScoped<ISalesRepository, SalesRepository>();
 builder.Services.AddScoped<IProductRepo, ProductRepo>();
 builder.Services.AddScoped<IWorkItemRepository, WorkItemRepository>();
+
+//Services
+builder.Services.AddScoped<IWorkItemService, WorkItemService>();
+
+
 //builder.Services.AddCors(options => options.AddPolicy(name: "AllDashboardPro",
 //    policy =>
 //    {

@@ -1,43 +1,21 @@
-﻿namespace AdventureWorksAPI.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace AdventureWorksAPI;
+
+public partial class WorkItem
 {
-    public class WorkItem
-    {
-        public int WorkItemId
-        {
-            get;
-            set;
-        }
+    public int WorkItemId { get; set; }
 
-        public string Title
-        {
-            get;
-            set;
-        } = string.Empty;
+    public string? Title { get; set; }
 
-        public string Description
-        {
-            get;
-            set;
-        } = string.Empty;
-        public DateTime DueDate
-        {
-            get;
-            set;
-        }
-        public int Priority
-        {
-            get;
-            set;
-        }
-        public DateTime CreatedAt
-        {
-            get;
-            set;
-        }
-        public string CreatedBy
-        {
-            get;
-            set;
-        } = string.Empty;
-    }
+    public string? Description { get; set; }
+
+    public int? Priority { get; set; }
+
+    public string? CreatedBy { get; set; }
+
+    public DateTime? DueDate { get; set; }
+
+    public DateTime? CreatedAt { get; set; }
 }

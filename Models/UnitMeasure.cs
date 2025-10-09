@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AdventureWorksAPI.Models;
+namespace AdventureWorksAPI;
 
 /// <summary>
 /// Unit of measure lookup table.

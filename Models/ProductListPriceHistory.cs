@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AdventureWorksAPI.Models;
+namespace AdventureWorksAPI;
 
 /// <summary>
 /// Changes in the list price of a product over time.

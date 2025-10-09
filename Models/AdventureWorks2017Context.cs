@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace AdventureWorksAPI.Models;
+namespace AdventureWorksAPI;
 
 public partial class AdventureWorks2017Context : DbContext
 {
@@ -188,6 +188,8 @@ public partial class AdventureWorks2017Context : DbContext
     public virtual DbSet<VVendorWithContact> VVendorWithContacts { get; set; }
 
     public virtual DbSet<Vendor> Vendors { get; set; }
+
+    public virtual DbSet<WorkItem> WorkItems { get; set; }
 
     public virtual DbSet<WorkOrder> WorkOrders { get; set; }
 
@@ -3140,6 +3142,18 @@ public partial class AdventureWorks2017Context : DbContext
             entity.HasOne(d => d.BusinessEntity).WithOne(p => p.Vendor)
                 .HasForeignKey<Vendor>(d => d.BusinessEntityId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+        });
+
+        modelBuilder.Entity<WorkItem>(entity =>
+        {
+            entity.HasKey(e => e.WorkItemId).HasName("PK__WorkItem__A10D1B4562407768");
+
+            entity.Property(e => e.WorkItemId).ValueGeneratedNever();
+            entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+            entity.Property(e => e.CreatedBy).IsUnicode(false);
+            entity.Property(e => e.Description).IsUnicode(false);
+            entity.Property(e => e.DueDate).HasColumnType("datetime");
+            entity.Property(e => e.Title).IsUnicode(false);
         });
 
         modelBuilder.Entity<WorkOrder>(entity =>
